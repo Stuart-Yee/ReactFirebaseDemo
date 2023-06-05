@@ -20,7 +20,6 @@ export const login = async () => {
     }
 
     const loggedInUser = new User(mockUserData);
-    console.log(loggedInUser);
 
     //TODO add authentication logic with Firebase
 
@@ -35,7 +34,6 @@ export const logout = () => {
 export const getLoggedInUser = () => {
     if (checkLogin()) {
         const user = JSON.parse(localStorage.getItem("loggedInUser"));
-        console.log("user from local storage", user)
         return user;
     } else {
         return null;

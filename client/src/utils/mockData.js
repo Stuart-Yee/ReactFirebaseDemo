@@ -26,12 +26,13 @@ const recipe1 = {
         "Garnish with grated Parmesan cheese."
     ],
     "author": "Chef John",
-    "ratings": [
-        {"uid": "user1", "score": 4},
-        {"uid": "user2", "score": 5},
-        {"uid": "user3", "score": 3},
-        {"uid": "user4", "score": 4}
-    ]
+    "ratings": {
+        "user1": 4,
+        "user2": 5,
+        "user3": 3,
+        "user4": 4,
+        "42": 3
+      }
 }
 
 const recipe2 = {
@@ -62,13 +63,13 @@ const recipe2 = {
         "Serve the stir-fry over cooked rice."
     ],
     "author": "Chef Emily",
-    "ratings": [
-        {"uid": "user1", "score": 5},
-        {"uid": "user2", "score": 4},
-        {"uid": "user3", "score": 4},
-        {"uid": "user4", "score": 3},
-        {"uid": "user5", "score": 5}
-    ]
+    "ratings": {
+        "user1": 5,
+        "user2": 4,
+        "user3": 4,
+        "user4": 3,
+        "user5": 5
+      }
 }
 
 export const mockDataRecipes = [

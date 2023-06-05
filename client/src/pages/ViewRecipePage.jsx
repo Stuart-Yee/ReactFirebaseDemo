@@ -1,10 +1,14 @@
 import PageTemplate from "./PageTemplate";
 import { useParams } from "react-router-dom";
 import Recipe from "../models/Recipe";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import RateIt from "../components/RateIt";
+import { LoggedInContext } from "../context/LoggedInContext";
 
 const RecipePage = () => {
     const { recipeId } = useParams()
+
+    const { isLoggedIn } = useContext(LoggedInContext);
 
     const [recipe, setRecipe] = useState(null);
 
@@ -13,7 +17,7 @@ const RecipePage = () => {
             .then((res) => {
                 setRecipe(res);
             })
-    }, [])
+    }, [recipeId])
 
     return (
         <PageTemplate>
@@ -27,10 +31,12 @@ const RecipePage = () => {
                             By: {recipe.author}
                         </p>
                         <p className="text-lg mb-3">
-                            Average Rating: {recipe.getAverageRating()}</p>
+                            Average Rating: {recipe.getAverageRating()}
+                        </p>
+                        {isLoggedIn ? <RateIt recipe={recipe}/> : <></>}
                         
                         <div 
-                            className="bg-orange-50 mb-2 border-2 rounded-md p-2"
+                            className="bg-orange-50 m-2 border-2 rounded-md p-2"
                             >
                             <p className="text-lg mb-2">
                             Ingredients:

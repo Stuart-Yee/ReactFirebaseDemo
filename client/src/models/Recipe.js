@@ -14,9 +14,11 @@ class Recipe {
         if (this.ratings.length === 0) {
             return "No ratings"
         }
-        const numRatings = this.ratings.length;
+        const numRatings = Object.keys(this.ratings).length
         let total = 0;
-        this.ratings.forEach(rating=>total+=rating.score);
+        for (let key in this.ratings) {
+            total += parseInt(this.ratings[key])
+        }
         return total/numRatings;
     }
 
@@ -28,6 +30,11 @@ class Recipe {
         //using mock data:
         const recipes = mockDataRecipes;
         return recipes.filter((val)=>val.uid===uid)[0];
+    }
+
+    submitRating = async (uid, rating) => {
+        console.log(`Submitted rating {${uid}: ${rating}}`)
+        //TODO set up special update query to add rating
     }
 
   }

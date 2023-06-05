@@ -1,5 +1,4 @@
 import PageTemplate from "./PageTemplate";
-import RecipesList from "../components/RecipesList";
 
 const RecipeForm = () => {
     return(
