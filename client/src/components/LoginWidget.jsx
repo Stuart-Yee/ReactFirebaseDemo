@@ -1,35 +1,53 @@
-import { useState } from "react";
-import User from "../models/User";
-import { login, logout, checkLogin, getLoggedInUser } from "../utils/authentication";
+import { useContext } from "react";
+import { login, logout, getLoggedInUser } from "../utils/authentication";
+import { LoggedInContext } from "../context/LoggedInContext";
 
-const LoginWidget = (props) => {
-    const [loggedIn, setLoggedIn] = useState(checkLogin());
+const LoginWidget = () => {
+    
+    const { isLoggedIn, setIsLoggedIn } = useContext(LoggedInContext);
 
     const logoutHandler = () => {
         logout();
-        setLoggedIn(false);
+        setIsLoggedIn(false)
     }
 
     const loginHandler = () => {
         login()
-            .then(res=>{
+            .then(res => {
                 if (res) {
-                    setLoggedIn(true);
+                    setIsLoggedIn(true);
                 }
             })
     }
 
     return (
         <>
-        {loggedIn?
-            <>
-            <p>Logged In as: {getLoggedInUser().firstName}</p>
-            <img src={getLoggedInUser().photoURL} alt="profile"/>
-            <button onClick={logoutHandler}>Logout</button> 
-            </>
-            :
-            <button onClick={loginHandler}>Login</button>
-        }
+            {isLoggedIn ?
+                <div className="w-1/4 m-5">
+                    <div 
+                        className="flex text-white">
+                        <img
+                            className="rounded-full profile-pic border-amber-400 border-2"
+                            src={getLoggedInUser().photoURL}
+                            alt="profile" />
+                        <div>
+                            <p>Logged In as: </p>
+                            <p>{getLoggedInUser().firstName}</p>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                onClick={logoutHandler}
+                            >Logout</button>
+                        </div>
+                    </div>
+                </div>
+                :
+                <div className="w-1/4 m-5">
+                    <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={loginHandler}
+                    >Login</button>
+                </div>
+            }
         </>
     )
 }

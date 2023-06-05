@@ -15,3 +15,15 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.profile-pic {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
+
+.nav-bar {
+  background-color: rgb(28,104,112);
+  height: 200px;
+}
+
