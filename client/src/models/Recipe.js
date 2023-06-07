@@ -2,12 +2,13 @@ import { mockDataRecipes } from "../utils/mockData";
 
 class Recipe {
     constructor(recipeData) {
-      this.uid = recipeData.uid;
-      this.name = recipeData.name;
-      this.ingredients = recipeData.ingredients;
-      this.instructions = recipeData.instructions;
-      this.author = recipeData.author;
-      this.ratings = recipeData.ratings;
+      this.uid = recipeData.uid; // string
+      this.name = recipeData.name; // string
+      this.ingredients = recipeData.ingredients; //array
+      this.instructions = recipeData.instructions; //array
+      this.author = recipeData.author; // string
+      this.authorId = recipeData.authorId; // string
+      this.ratings = recipeData.ratings; // array
     }
 
     getAverageRating() {

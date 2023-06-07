@@ -26,6 +26,7 @@ const recipe1 = {
         "Garnish with grated Parmesan cheese."
     ],
     "author": "Chef John",
+    "authorId": "123",
     "ratings": {
         "user1": 4,
         "user2": 5,
@@ -62,7 +63,8 @@ const recipe2 = {
         "Season with salt and pepper to taste.",
         "Serve the stir-fry over cooked rice."
     ],
-    "author": "Chef Emily",
+    "author": "Arthur Dent",
+    "authorId": "42",
     "ratings": {
         "user1": 5,
         "user2": 4,

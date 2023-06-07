@@ -1,7 +1,11 @@
 import LoginWidget from "./LoginWidget";
 import { Link } from "react-router-dom";
+import { LoggedInContext } from "../context/LoggedInContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+
+    const {isLoggedIn} = useContext(LoggedInContext)
 
     return(
         <nav className="nav-bar flex justify-between items-center">
@@ -14,6 +18,7 @@ const NavBar = () => {
                 Your Family's Recipes
             </p>
             </Link>
+            {isLoggedIn ? <Link to="/recipes/create">Create a Recipe</Link> : <></>}
             <LoginWidget/>
         </nav>
         

@@ -4,7 +4,7 @@ import { LoggedInProvider } from './context/LoggedInContext';
 import { checkLogin } from './utils/authentication';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import RecipePage from './pages/ViewRecipePage';
-import RecipeForm from './pages/RecipeForm';
+import RecipeFormPage from './pages/RecipeFormPage';
 
 function App() {
 
@@ -25,12 +25,12 @@ function App() {
             <Route path="/viewRecipe/:recipeId" element={<RecipePage/>}/>
             <Route path="/recipes/create" element={
               <ProtectedRoute>
-                <RecipeForm/>
+                <RecipeFormPage/>
               </ProtectedRoute>
             }/>
             <Route path="/recipes/edit/:recipeId" element={
               <ProtectedRoute>
-                <RecipeForm/>
+                <RecipeFormPage/>
               </ProtectedRoute>
             }/>
             <Route path="/easterEgg" element={
