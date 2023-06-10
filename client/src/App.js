@@ -5,6 +5,7 @@ import { checkLogin } from './utils/authentication';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import RecipePage from './pages/ViewRecipePage';
 import RecipeFormPage from './pages/RecipeFormPage';
+import ChefPage from './pages/ChefPage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/viewRecipe/:recipeId" element={<RecipePage/>}/>
+            <Route path="/recipes/byUser/:userId" element={<ChefPage/>}/>
             <Route path="/recipes/create" element={
               <ProtectedRoute>
                 <RecipeFormPage/>

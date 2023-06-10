@@ -12,7 +12,7 @@ export const login = async () => {
     localStorage.clear();
 
     const mockUserData = {
-        "uid": 42,
+        "uid": "42",
         "firstName": "Arthur",
         "lastName": "Dent",
         "email": "arthur.dent@hh-guide.com",

@@ -4,6 +4,7 @@ import Recipe from "../models/Recipe";
 import { useState, useEffect, useContext } from "react";
 import RateIt from "../components/RateIt";
 import { LoggedInContext } from "../context/LoggedInContext";
+import { getLoggedInUser } from "../utils/authentication";
 
 const RecipePage = () => {
     const { recipeId } = useParams()
@@ -12,10 +13,18 @@ const RecipePage = () => {
 
     const [recipe, setRecipe] = useState(null);
 
+    const [isOwned, setIsOwned] = useState(false);
+
     useEffect(() => {
         Recipe.getByID(recipeId)
             .then((res) => {
                 setRecipe(res);
+                const user = getLoggedInUser();
+                if (user) {
+                    console.log(user)
+                    console.log("user", user.uid, "and recipe", res.authorId);
+                    user.uid === res.authorId ? setIsOwned(true) : setIsOwned(false);
+                }
             })
     }, [recipeId])
 
@@ -34,7 +43,7 @@ const RecipePage = () => {
                             Average Rating: {recipe.getAverageRating()}
                         </p>
                         {isLoggedIn ? <RateIt recipe={recipe}/> : <></>}
-                        
+                        {isOwned ? <p>Edit</p>:<></>}
                         <div 
                             className="bg-orange-50 m-2 border-2 rounded-md p-2"
                             >

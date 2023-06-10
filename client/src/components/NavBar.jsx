@@ -2,6 +2,7 @@ import LoginWidget from "./LoginWidget";
 import { Link } from "react-router-dom";
 import { LoggedInContext } from "../context/LoggedInContext";
 import { useContext } from "react";
+import UserOptions from "./UserOptions";
 
 const NavBar = () => {
 
@@ -18,7 +19,7 @@ const NavBar = () => {
                 Your Family's Recipes
             </p>
             </Link>
-            {isLoggedIn ? <Link to="/recipes/create">Create a Recipe</Link> : <></>}
+            {isLoggedIn ? <UserOptions/> : <></>}
             <LoginWidget/>
         </nav>
         

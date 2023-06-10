@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 
-const RecipeForm = ({ onSubmit }) => {
+const RecipeForm = ({ onSubmit, recipe }) => {
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
+
+  useState(()=>{
+    if (recipe) {
+        setName(recipe.name);
+        const joinedIngredients = recipe.ingredients.join("\n");
+        const joinedInstructions = recipe.instructions.join("\n");
+        setIngredients(joinedIngredients);
+        setInstructions(joinedInstructions);
+    }
+  },[recipe])
 
   const handleNameChange = (e) => {
     setName(e.target.value);

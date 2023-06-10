@@ -33,6 +33,12 @@ class Recipe {
         return recipes.filter((val)=>val.uid===uid)[0];
     }
 
+    static getByUser = async (userUid) => {
+        //TODO implement Firebase query
+        const recipes = mockDataRecipes.filter((recipe)=>userUid===recipe.authorId);
+        return recipes;
+    }
+
     submitRating = async (uid, rating) => {
         console.log(`Submitted rating {${uid}: ${rating}}`)
         //TODO set up special update query to add rating

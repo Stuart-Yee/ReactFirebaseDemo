@@ -1,10 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { mockDataRecipes } from "../utils/mockData";
 import { LoggedInContext } from "../context/LoggedInContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Recipe from "../models/Recipe";
 
 const RecipesList = (props) => {
     //prop pagination will set a specific amount of recipes
+
+    const {userId} = useParams();
 
     const [recipes, setRecipes] = useState([]);
 
@@ -12,9 +15,16 @@ const RecipesList = (props) => {
     const {isLoggedIn, setIsLoggedIn} = useContext(LoggedInContext);
 
     useEffect(()=>{
+        console.log("the userId", userId);
         //TODO hook up to Firestore database
         //Using mockdata for now
-        setRecipes([...mockDataRecipes]);
+        if (userId) {
+            Recipe.getByUser(userId)
+                .then(recArr=>setRecipes([...recArr]))
+        } else {
+            setRecipes([...mockDataRecipes]);
+        }
+        
     }, [])
 
     return(
@@ -24,10 +34,6 @@ const RecipesList = (props) => {
                     <th className="px-6 py-4">Recipe</th>
                     <th className="px-6 py-4">Author</th>
                     <th className="px-6 py-4">Average Rating</th>
-                    {isLoggedIn?
-                        <th className="px-6 py-4">Actions</th> :
-                        <></>
-                    }
                 </tr>
             </thead>
             <tbody>
@@ -38,14 +44,11 @@ const RecipesList = (props) => {
                             <Link to={`/viewRecipe/${val.uid}`}>{val.name}</Link>
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                            {val.author}
+                            <Link to={`/recipes/byUser/${val.authorId}`}>{val.author}</Link>
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
                             {val.getAverageRating()}
                         </td>
-                        {isLoggedIn? 
-                            <td className="whitespace-nowrap px-6 py-4">Like</td> :
-                            <></> }
                     </tr>)
                 })}
             </tbody>
