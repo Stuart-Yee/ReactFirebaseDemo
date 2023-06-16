@@ -1,4 +1,6 @@
 import User from "../models/User";
+import { auth, provider } from "./firebaseConfig";
+import { signInWithPopup } from "firebase/auth";
 
 export const checkLogin = () => {
     if ( localStorage.getItem("loggedInUser")) {
@@ -19,7 +21,18 @@ export const login = async () => {
         "photoURL": "https://upload.wikimedia.org/wikipedia/en/e/eb/Arthur_Dent_Livid.jpg"
     }
 
-    const loggedInUser = new User(mockUserData);
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
+
+    const userData= {
+        "uid": result.user.uid,
+        "firstName": result.user.displayName.split(" ")[0],
+        "lastName": result.user.displayName.split(" ")[1],
+        "email": result.user.email,
+        "photoURL": result.user.photoURL
+    }
+
+    const loggedInUser = new User(userData);
 
     //TODO add authentication logic with Firebase
 
