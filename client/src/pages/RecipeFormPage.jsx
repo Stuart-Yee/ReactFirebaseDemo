@@ -32,15 +32,17 @@ const RecipeFormPage = () => {
             console.log("new recipe", recipe);
             navigate(`/viewRecipe/${recipe.uid}`)
         } else {
-            console.log("this will create a new recipe");
+            // console.log("this will create a new recipe");
             const user = getLoggedInUser();
             recipeData.authorId = user.uid;
             recipeData.author = `${user.firstName} ${user.lastName}`;
-            recipeData.ratings = []
+            recipeData.ratings = {}
             const newRecipe = new Recipe(recipeData);
-            console.log("The new recipe", newRecipe);
-            //TODO this is a create method
-            navigate(`/`)
+            // console.log("The new recipe", newRecipe);
+            newRecipe.create().then((res)=>{
+                console.log(res);
+                navigate(`/`)
+            }).catch(err=>console.log(err));
         }
 
       };

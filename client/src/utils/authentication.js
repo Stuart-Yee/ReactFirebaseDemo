@@ -13,13 +13,13 @@ export const checkLogin = () => {
 export const login = async () => {
     localStorage.clear();
 
-    const mockUserData = {
-        "uid": "42",
-        "firstName": "Arthur",
-        "lastName": "Dent",
-        "email": "arthur.dent@hh-guide.com",
-        "photoURL": "https://upload.wikimedia.org/wikipedia/en/e/eb/Arthur_Dent_Livid.jpg"
-    }
+    // const mockUserData = {
+    //     "uid": "42",
+    //     "firstName": "Arthur",
+    //     "lastName": "Dent",
+    //     "email": "arthur.dent@hh-guide.com",
+    //     "photoURL": "https://upload.wikimedia.org/wikipedia/en/e/eb/Arthur_Dent_Livid.jpg"
+    // }
 
     const result = await signInWithPopup(auth, provider);
     console.log(result);

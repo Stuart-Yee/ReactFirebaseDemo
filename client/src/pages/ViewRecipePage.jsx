@@ -12,7 +12,7 @@ const RecipePage = () => {
 
     const { isLoggedIn } = useContext(LoggedInContext);
 
-    const [recipe, setRecipe] = useState(null);
+    const [recipe, setRecipe] = useState();
 
     const [isOwned, setIsOwned] = useState(false);
 

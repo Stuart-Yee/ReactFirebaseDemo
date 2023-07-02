@@ -15,14 +15,19 @@ const RecipesList = (props) => {
     const {isLoggedIn, setIsLoggedIn} = useContext(LoggedInContext);
 
     useEffect(()=>{
-        console.log("the userId", userId);
         //TODO hook up to Firestore database
         //Using mockdata for now
         if (userId) {
             Recipe.getByUser(userId)
-                .then(recArr=>setRecipes([...recArr]))
+                .then(recArr=>{
+                    console.log(recArr);
+                    setRecipes([...recArr]);
+                })
+                .catch(err=>console.log(err));
         } else {
-            setRecipes([...mockDataRecipes]);
+            Recipe.getAll()
+                .then(results=>setRecipes([...results]))
+                .catch(err=>console.log(err))
         }
         
     }, [])
